@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/AndiRamdani20/implementasi-jenkins']])
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/daniram20/implementasi-jenkins']])
                 bat 'mvn clean install'
                 echo 'Git Checkout Completed'
             }
@@ -41,7 +41,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    bat 'docker build -t AndiRamdani20/rnd-springboot-3.0 .'
+                    bat 'docker build -t daniram20/rnd-springboot-3.0 .'
                     echo 'Build Docker Image Completed'
                 }
             }
@@ -51,9 +51,9 @@ pipeline {
              steps {
                  script {
                      withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhub-password')]) {
-                         bat ''' docker login -u AndiRamdani20 -p "%dockerhub-password%" '''
+                         bat ''' docker login -u daniram20 -p "%dockerhub-password%" '''
                      }
-                     bat 'docker push AndiRamdani20/rnd-springboot-3.0'
+                     bat 'docker push daniram20/rnd-springboot-3.0'
                  }
              }
          }
@@ -61,7 +61,7 @@ pipeline {
         stage ('Docker Run') {
             steps {
                 script {
-                    bat 'docker run -d --name rnd-springboot-3.0 -p 8099:8080 AndiRamdani20/rnd-springboot-3.0'
+                    bat 'docker run -d --name rnd-springboot-3.0 -p 8099:8080 daniram20/rnd-springboot-3.0'
                     echo 'Docker Run Completed'
                 }
             }

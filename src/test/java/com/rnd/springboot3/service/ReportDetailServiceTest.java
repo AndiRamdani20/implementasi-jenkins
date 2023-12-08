@@ -42,7 +42,7 @@ public class ReportDetailServiceTest {
     private ReportDetailService reportDetailService;
 
 
-    static final String storageUrl = "D:/gli/storage/";
+    static final String storageUrl = "C:/Users/Padepokan 79/OneDrive/Dokumen/gli/storage";
 
     @Test
     @DisplayName("should return success generate service")

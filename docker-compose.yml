@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  sonarqube:
+    container_name: sonarqube
+    restart: always
+    image: sonarqube
+    ports:
+      - "9000:9000"
+    networks:
+      - net1
+
+networks:
+  net1:
+    driver: bridge
